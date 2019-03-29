@@ -108,13 +108,18 @@ export default class App {
   }
 
   signPayloadBitski() {
-    this.contract
-      .deployed()
-      .then(contract => console.log(contract.options.address));
     const bitskiSigner = this.bitskiEthersWeb3Provider.getSigner();
     const hash = utils.arrayify(utils.formatBytes32String("hello"));
     console.log(`Bitski hash to sign: ${hash}`);
     bitskiSigner.getAddress().then(address => {
+      // bitskiSigner.provider.send("personal_sign", [hash, address]).then(signature => {
+      //   console.log(`Bitski signature: ${signature}`);
+      //   this.myContractEthersWrapper
+      //     .computeRecoveryAddress(hash, signature)
+      //     .then(address => {
+      //       console.log(`Recovered bitski address: ${address}`);
+      //     });
+      // })
       bitskiSigner.signMessage(hash).then(signature => {
         console.log(`Bitski signature: ${signature}`);
         this.myContractEthersWrapper

@@ -30,9 +30,9 @@
   },
   "dependencies": {
     "babel-plugin-import": "^1.11.0",
-    "bitski": "^0.2.0",
+    "bitski": "^0.4.2",
     "ethers": "^4.0.27",
-    "openzeppelin-solidity": "2.2.0",
+    "openzeppelin-solidity": "2.1.2",
     "truffle": "^5.0.10",
     "truffle-hdwallet-provider": "1.0.2",
     "web3": "1.0.0-beta.36"

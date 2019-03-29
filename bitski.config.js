@@ -1,12 +1,12 @@
 module.exports = {
   app: {
-    id: 'YOUR_CLIENT_ID' //change this to your app's client id
+    id: 'CLIENT_ID' //change this to your app's client id
   },
   appWallet: {
     client: {
       //if you have an app wallet, add your client id and secret here
-      id: 'YOUR-APP-WALLET-CLIENT-ID',
-      secret: 'YOUR-APP-WALLET-SECRET'
+      id: 'id',
+      secret: 'secret'
     },
     auth: {
       tokenHost: 'https://account.bitski.com',

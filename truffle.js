@@ -1,10 +1,9 @@
-const BitskiConfig = require('./bitski.config.js');
-const BitskiTruffleProvider = require('bitski-truffle-provider');
+const HDWalletProvider = require("truffle-hdwallet-provider");
 
 module.exports = {
   compilers: {
     solc: {
-      version: "0.5.2"
+      version: "0.5.7"
     }
   },
   networks: {
@@ -13,23 +12,15 @@ module.exports = {
       port: 8545,
       network_id: "*",
     },
-    live: {
-      network_id: '1',
-      provider: () => {
-        return BitskiTruffleProvider("mainnet", BitskiConfig.appWallet)
-      }
-    },
-    kovan: {
-      network_id: '42',
-      provider: () => {
-        return BitskiTruffleProvider("kovan", BitskiConfig.appWallet)
-      }
-    },
     rinkeby: {
       network_id: '4',
       provider: () => {
-        return BitskiTruffleProvider("rinkeby", BitskiConfig.appWallet)
-      }
-    }
+        return new HDWalletProvider(
+          "cabin time talent maximum wrestle surround bind fitness decade uphold dish trip",
+          "https://rinkeby.infura.io/v3/c244942c16f64e0aa88fc097d69c3566"
+        )
+      },
+      skipDryRun: true
+    },
   }
 };

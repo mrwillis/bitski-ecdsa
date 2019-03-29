@@ -35,6 +35,6 @@
     "openzeppelin-solidity": "2.2.0",
     "truffle": "^5.0.10",
     "truffle-hdwallet-provider": "1.0.2",
-    "web3": "^1.0.0-beta.36"
+    "web3": "1.0.0-beta.36"
   }
 }

@@ -6,7 +6,7 @@ import { Contract as ethersContract, providers, utils } from "ethers";
 import Web3 from "web3";
 // Import any contracts you want to use from the build folder.
 // Here we've imported the sample contract.
-import artifacts from "../build/contracts/MyContractRinkeby.json";
+import artifacts from "../build/contracts/MyContract.json";
 import Contract from "./contract";
 
 export default class App {

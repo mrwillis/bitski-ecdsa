@@ -20,7 +20,7 @@ module.exports = {
     },
     production: {
       network: "rinkeby", //ethereum network to use for production
-      redirectURL: "https://bitski-ecdsa.herokuapp.com/callback.html" //url the popup will redirect to when logged in
+      redirectURL: "https://bitski-ecdsa.herokuapp.com/public/callback.html" //url the popup will redirect to when logged in
     },
     rinkeby: {
       network: "rinkeby",

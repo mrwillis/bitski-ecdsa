@@ -16,8 +16,8 @@ module.exports = {
       network_id: '4',
       provider: () => {
         return new HDWalletProvider(
-          "cabin time talent maximum wrestle surround bind fitness decade uphold dish trip",
-          "https://rinkeby.infura.io/v3/c244942c16f64e0aa88fc097d69c3566"
+          'YOUR_MNEMONIC',
+          "PROVIDER_URL"
         )
       },
       skipDryRun: true

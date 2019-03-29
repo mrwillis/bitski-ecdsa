@@ -6,7 +6,7 @@ import { Contract as ethersContract, providers, utils } from "ethers";
 import Web3 from "web3";
 // Import any contracts you want to use from the build folder.
 // Here we've imported the sample contract.
-import artifacts from "../build/contracts/MyContract.json";
+import artifacts from "../build/contracts/MyContractRinkeby.json";
 import Contract from "./contract";
 
 export default class App {
@@ -121,6 +121,7 @@ export default class App {
       //     });
       // })
       bitskiSigner.signMessage(hash).then(signature => {
+        console.log(utils.splitSignature(signature));
         console.log(`Bitski signature: ${signature}`);
         this.myContractEthersWrapper
           .computeRecoveryAddress(hash, signature)

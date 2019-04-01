@@ -2212,10 +2212,22 @@
       "links": {},
       "address": "0xDC07B09F430C2722c4C43BB28d6093cB70482BB5",
       "transactionHash": "0x8d3c256d7a837cde19505a85f00fc6ed57bff4a8e953f48bbbfff1f1ad151071"
+    },
+    "1554143867514": {
+      "events": {},
+      "links": {},
+      "address": "0x6B3092c4A986a6ecC09a39B95EE26Ef96200912D",
+      "transactionHash": "0xbac7d3cd061d48f6bd47c0263949fede7590e56993573add1e1699297aafe807"
+    },
+    "1554144304203": {
+      "events": {},
+      "links": {},
+      "address": "0x709681db6BcC94F5c153A30c9D97E16Be8121A26",
+      "transactionHash": "0xb59f52f212fd74f6915bbf7915617a6e89c1cf5eff52f791230538aa9bce79a6"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-01T18:28:38.133Z",
+  "updatedAt": "2019-04-01T18:45:20.701Z",
   "devdoc": {
     "methods": {
       "getBaseOrderStatus((bytes32,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address,address,bool),bytes)": {

@@ -152,7 +152,7 @@ export default class App {
       bitskiSigner.signMessage(orderHash).then(signature => {
         console.log(`Bitski signature: ${signature}`);
         this.myContractEthersWrapper
-          .computeRecoveryAddress(orderHash, signature)
+          .computeRecoveryAddress("0x" + orderHash, signature)
           .then(address => {
             console.log(`Recovered bitski address: ${address}`);
           });

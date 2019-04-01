@@ -129,7 +129,7 @@ export default class App {
         console.log(makerOrder);
         const orderHash = getHash(makerOrder);
         console.log(`Metamask order hash to sign: ${orderHash}`);
-        signer.signMessage(orderHash).then(signature => {
+        signer.signMessage(utils.arrayify(orderHash)).then(signature => {
           console.log(`Metamask signature: ${signature}`);
           this.myContractEthersWrapper
             .computeRecoveryAddress(orderHash, signature)
@@ -147,16 +147,18 @@ export default class App {
       let makerOrder = Object.assign({}, order);
       console.log(`Signing hash of order`);
       console.log(makerOrder);
-      const orderHash = getHash(makerOrder).substring(2);
+      const orderHash = getHash(makerOrder);
       console.log(`Bitski hash to sign: ${orderHash}`);
-      bitskiSigner.signMessage(orderHash).then(signature => {
-        console.log(`Bitski signature: ${signature}`);
-        this.myContractEthersWrapper
-          .computeRecoveryAddress("0x" + orderHash, signature)
-          .then(address => {
-            console.log(`Recovered bitski address: ${address}`);
-          });
-      });
+      bitskiSigner.provider
+        .send("eth_sign", [address.toLowerCase(), orderHash])
+        .then(signature => {
+          console.log(`Bitski signature: ${signature}`);
+          this.myContractEthersWrapper
+            .computeRecoveryAddress(orderHash, signature)
+            .then(address => {
+              console.log(`Recovered bitski address: ${address}`);
+            });
+        });
     });
   }
 

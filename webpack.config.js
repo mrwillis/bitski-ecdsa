@@ -49,6 +49,9 @@ module.exports = () => {
         'BITSKI_CLIENT_ID': JSON.stringify(bitskiClientId),
         'BITSKI_REDIRECT_URL': JSON.stringify(bitskiRedirectURL)
       })
-    ]
+    ],
+    externals:[{
+      xmlhttprequest: '{XMLHttpRequest:XMLHttpRequest}'
+  }]
   }
 };

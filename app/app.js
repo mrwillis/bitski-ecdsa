@@ -3,11 +3,28 @@
 
 import { AuthenticationStatus, Bitski } from "bitski";
 import { Contract as ethersContract, providers, utils } from "ethers";
+import { Zero } from "ethers/constants";
+import { bigNumberify, randomBytes } from "ethers/utils";
 import Web3 from "web3";
 // Import any contracts you want to use from the build folder.
 // Here we've imported the sample contract.
 import artifacts from "../build/contracts/MyContract.json";
 import Contract from "./contract";
+import { getHash } from "./hash";
+
+const order = {
+  marketHash:
+    "0x7c828cd884a382728541f88682085020f3b672088fa04abd1892568aa409d29f",
+  totalBetSize: bigNumberify("750000000000000000000"),
+  percentageOdds: bigNumberify("29333333333333333333"),
+  expiry: 1553648700,
+  oracleFee: bigNumberify("2000000000000000000"),
+  relayer: "0x0000000000000000000000000000000000000000",
+  relayerMakerFee: Zero,
+  relayerTakerFee: Zero,
+  salt: bigNumberify(randomBytes(32)),
+  isMakerBetingOutcomeOne: false
+};
 
 export default class App {
   /**
@@ -85,59 +102,42 @@ export default class App {
     window.ethereum.enable().then(() => {
       const provider = new providers.Web3Provider(window.web3.currentProvider);
       const signer = provider.getSigner();
-      const hash = utils.formatBytes32String("hello");
       signer.getAddress().then(address => {
+        let makerOrder = Object.assign({}, order);
+        makerOrder.maker = address;
+        const orderHash = getHash(makerOrder);
+        console.log(`Metamask hash to sign: ${orderHash}`);
         signer.provider
-          .send("personal_sign", [hash, address])
+          .send("personal_sign", [orderHash, address])
           .then(signature => {
             console.log(`Metamask signature: ${signature}`);
             this.myContractEthersWrapper
-              .computeRecoveryAddress(hash, signature)
+              .computeRecoveryAddress(orderHash, signature)
               .then(address => {
                 console.log(`Recovered metamask address: ${address}`);
               });
           });
       });
     });
-    // this.web3.eth.getAccounts().then((accounts) => {
-    //   console.log(this.ethersWeb3Provider)
-    //   this.ethersWeb3Provider.getSigner(accounts[0]).then((signer) => {
-    //     console.log(signer)
-    //   });
-    // })
   }
 
   signPayloadBitski() {
     const bitskiSigner = this.bitskiEthersWeb3Provider.getSigner();
-    const hash = utils.arrayify(utils.formatBytes32String("hello"));
-    console.log(`Bitski hash to sign: ${hash}`);
     bitskiSigner.getAddress().then(address => {
-      // bitskiSigner.provider.send("personal_sign", [hash, address]).then(signature => {
-      //   console.log(`Bitski signature: ${signature}`);
-      //   this.myContractEthersWrapper
-      //     .computeRecoveryAddress(hash, signature)
-      //     .then(address => {
-      //       console.log(`Recovered bitski address: ${address}`);
-      //     });
-      // })
-      bitskiSigner.signMessage(hash).then(signature => {
+      let makerOrder = Object.assign({}, order);
+      makerOrder.maker = address;
+      const orderHash = getHash(makerOrder);
+      console.log(`Bitski hash to sign: ${orderHash}`);
+      bitskiSigner.signMessage(orderHash).then(signature => {
         console.log(utils.splitSignature(signature));
         console.log(`Bitski signature: ${signature}`);
         this.myContractEthersWrapper
-          .computeRecoveryAddress(hash, signature)
+          .computeRecoveryAddress(orderHash, signature)
           .then(address => {
             console.log(`Recovered bitski address: ${address}`);
           });
       });
     });
-    // bitskiSigner.signMessage(hash).then(signature => {
-    //   console.log(`Bitski signature: ${signature}`);
-    //   this.myContractEthersWrapper
-    //     .computeRecoveryAddress(hash, signature)
-    //     .then(address => {
-    //       console.log(`Recovered bitski address: ${address}`);
-    //     });
-    // });
   }
 
   /**
@@ -177,6 +177,7 @@ export default class App {
     this.contract
       .deployed()
       .then(instance => {
+        console.log(instance);
         this.contractInstance = instance;
         this.myContractEthersWrapper = new ethersContract(
           instance.options.address,

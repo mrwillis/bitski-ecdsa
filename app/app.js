@@ -23,7 +23,8 @@ const order = {
   relayerMakerFee: Zero,
   relayerTakerFee: Zero,
   salt: bigNumberify(randomBytes(32)),
-  isMakerBetingOutcomeOne: false
+  isMakerBetingOutcomeOne: false,
+  maker: "0xaD90d89b23Fc80bCF70c3E8CC23a21ccADFBC95F"
 };
 
 export default class App {
@@ -66,7 +67,8 @@ export default class App {
     this.signPayloadBitskiElement = document.getElementById(
       "sign-payload-bitski"
     );
-
+    this.signHelloBitskiElement = document.getElementById("sign-hello-bitski");
+    this.signHelloMetamaskElement = document.getElementById("sign-hello-metamask");
     this.signPayloadMetamaskElement.addEventListener("click", event => {
       event.preventDefault();
       this.signPayloadMetamask();
@@ -76,6 +78,14 @@ export default class App {
       event.preventDefault();
       this.signPayloadBitski();
     });
+    this.signHelloBitskiElement.addEventListener("click", event => {
+      event.preventDefault();
+      this.signHelloBitski();
+    });
+    this.signHelloMetamaskElement.addEventListener("click", event => {
+      event.preventDefault();
+      this.signHelloMetamask();
+    })
 
     // Set up connect button
     const connectElement = document.getElementById("connect-button");
@@ -104,9 +114,10 @@ export default class App {
       const signer = provider.getSigner();
       signer.getAddress().then(address => {
         let makerOrder = Object.assign({}, order);
-        makerOrder.maker = address;
+        console.log(`Signing hash of order`)
+        console.log(makerOrder)
         const orderHash = getHash(makerOrder);
-        console.log(`Metamask hash to sign: ${orderHash}`);
+        console.log(`Metamask order hash to sign: ${orderHash}`);
         signer.provider
           .send("personal_sign", [orderHash, address])
           .then(signature => {
@@ -125,7 +136,8 @@ export default class App {
     const bitskiSigner = this.bitskiEthersWeb3Provider.getSigner();
     bitskiSigner.getAddress().then(address => {
       let makerOrder = Object.assign({}, order);
-      makerOrder.maker = address;
+      console.log(`Signing hash of order`)
+      console.log(makerOrder)
       const orderHash = getHash(makerOrder);
       console.log(`Bitski hash to sign: ${orderHash}`);
       bitskiSigner.signMessage(orderHash).then(signature => {
@@ -135,6 +147,43 @@ export default class App {
           .computeRecoveryAddress(orderHash, signature)
           .then(address => {
             console.log(`Recovered bitski address: ${address}`);
+          });
+      });
+    });
+  }
+
+  signHelloBitski() {
+    const bitskiSigner = this.bitskiEthersWeb3Provider.getSigner();
+    bitskiSigner.getAddress().then(address => {
+      const hash = utils.formatBytes32String("hello");
+      console.log(`Bitski hash to sign: ${hash}`);
+      bitskiSigner.signMessage(hash).then(signature => {
+        console.log(`Bitski signature: ${signature}`);
+        this.myContractEthersWrapper
+          .computeRecoveryAddress(hash, signature)
+          .then(address => {
+            console.log(`Recovered bitski address: ${address}`);
+          });
+      });
+    });
+  }
+
+  signHelloMetamask() {
+    window.ethereum.enable().then(() => {
+      const provider = new providers.Web3Provider(window.web3.currentProvider);
+      const signer = provider.getSigner();
+      signer.getAddress().then(address => {
+        const hash = utils.formatBytes32String("hello");
+        console.log(`Metamask hash to sign: ${hash}`);
+        signer.provider
+          .send("personal_sign", [hash, address])
+          .then(signature => {
+            console.log(`Metamask signature: ${signature}`);
+            this.myContractEthersWrapper
+              .computeRecoveryAddress(hash, signature)
+              .then(address => {
+                console.log(`Recovered metamask address: ${address}`);
+              });
           });
       });
     });

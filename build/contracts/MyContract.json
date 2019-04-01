@@ -2200,10 +2200,16 @@
       "links": {},
       "address": "0x897499323C95457A1EE7f76f647b821FcEA4Cfe2",
       "transactionHash": "0x516e4c9743e1937ea02ee934619917b5ec0c0ceb05263248e1b4c99ebe3fd99d"
+    },
+    "1554143019127": {
+      "events": {},
+      "links": {},
+      "address": "0x6c6359AAf4e8bab32fCA70e8494513F9861EaC2c",
+      "transactionHash": "0x850fb09484d035f2f8f53db6fd283d63e90407e1e99362ae06c6e917619ab0d4"
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-01T17:45:42.852Z",
+  "updatedAt": "2019-04-01T18:23:46.818Z",
   "devdoc": {
     "methods": {
       "getBaseOrderStatus((bytes32,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address,address,bool),bytes)": {

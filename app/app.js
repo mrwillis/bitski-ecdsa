@@ -149,7 +149,7 @@ export default class App {
       let makerOrder = Object.assign({}, order);
       console.log(`Signing hash of order`);
       console.log(makerOrder);
-      const orderHash = utils.arrayify(getHash(makerOrder));
+      const orderHash = getHash(makerOrder);
       console.log(`Bitski hash to sign: ${orderHash}`);
       bitskiSigner.signMessage(orderHash).then(signature => {
         console.log(utils.splitSignature(signature));

@@ -129,16 +129,14 @@ export default class App {
         console.log(makerOrder);
         const orderHash = getHash(makerOrder);
         console.log(`Metamask order hash to sign: ${orderHash}`);
-        signer.provider
-          .send("personal_sign", [orderHash, address])
-          .then(signature => {
-            console.log(`Metamask signature: ${signature}`);
-            this.myContractEthersWrapper
-              .computeRecoveryAddress(orderHash, signature)
-              .then(address => {
-                console.log(`Recovered metamask address: ${address}`);
-              });
-          });
+        signer.signMessage(orderHash).then(signature => {
+          console.log(`Metamask signature: ${signature}`);
+          this.myContractEthersWrapper
+            .computeRecoveryAddress(orderHash, signature)
+            .then(address => {
+              console.log(`Recovered metamask address: ${address}`);
+            });
+        });
       });
     });
   }
@@ -149,10 +147,9 @@ export default class App {
       let makerOrder = Object.assign({}, order);
       console.log(`Signing hash of order`);
       console.log(makerOrder);
-      const orderHash = getHash(makerOrder);
+      const orderHash = getHash(makerOrder).substring(2);
       console.log(`Bitski hash to sign: ${orderHash}`);
       bitskiSigner.signMessage(orderHash).then(signature => {
-        console.log(utils.splitSignature(signature));
         console.log(`Bitski signature: ${signature}`);
         this.myContractEthersWrapper
           .computeRecoveryAddress(orderHash, signature)
@@ -204,16 +201,14 @@ export default class App {
       signer.getAddress().then(address => {
         const hash = utils.formatBytes32String("hello");
         console.log(`Metamask hash to sign: ${hash}`);
-        signer.provider
-          .send("personal_sign", [hash, address])
-          .then(signature => {
-            console.log(`Metamask signature: ${signature}`);
-            this.myContractEthersWrapper
-              .computeRecoveryAddress(hash, signature)
-              .then(address => {
-                console.log(`Recovered metamask address: ${address}`);
-              });
-          });
+        signer.signMessage(hash).then(signature => {
+          console.log(`Metamask signature: ${signature}`);
+          this.myContractEthersWrapper
+            .computeRecoveryAddress(hash, signature)
+            .then(address => {
+              console.log(`Recovered metamask address: ${address}`);
+            });
+        });
       });
     });
   }
@@ -255,7 +250,6 @@ export default class App {
     this.contract
       .deployed()
       .then(instance => {
-        console.log(instance);
         this.contractInstance = instance;
         this.myContractEthersWrapper = new ethersContract(
           instance.options.address,

@@ -16,8 +16,8 @@ module.exports = {
       network_id: '4',
       provider: () => {
         return new HDWalletProvider(
-          'YOUR_MNEMONIC',
-          "PROVIDER_URL"
+          process.env.MNEMONIC,
+          process.env.PROVIDER_URL
         )
       },
       skipDryRun: true

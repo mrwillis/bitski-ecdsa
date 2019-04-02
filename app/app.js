@@ -152,7 +152,7 @@ export default class App {
       const orderHash = getHash(makerOrder);
       console.log(`Bitski hash to sign: ${orderHash}`);
       bitskiSigner.provider
-        .send("personal_sign", [address.toLowerCase(), orderHash])
+        .send("eth_sign", [address.toLowerCase(), orderHash])
         .then(signature => {
           console.log(`Bitski signature: ${signature}`);
           this.myContractEthersWrapper

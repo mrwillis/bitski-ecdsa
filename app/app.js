@@ -6,9 +6,10 @@ import { Contract as ethersContract, providers, utils } from "ethers";
 import { Zero } from "ethers/constants";
 import { bigNumberify, randomBytes } from "ethers/utils";
 import Web3 from "web3";
+import disputeManagerArtifact from "../build/contracts/DisputeManager.json";
 // Import any contracts you want to use from the build folder.
 // Here we've imported the sample contract.
-import artifacts from "../build/contracts/MyContract.json";
+import myContractArtifacts from "../build/contracts/MyContract.json";
 import Contract from "./contract";
 import { getHash } from "./hash";
 
@@ -39,7 +40,11 @@ export default class App {
       this.web3.currentProvider
     );
     // Initialize the sample contract
-    this.contract = new Contract(this.web3, artifacts);
+    this.contract = new Contract(this.web3, myContractArtifacts);
+    this.disputeManagerContract = new Contract(
+      this.web3,
+      disputeManagerArtifact
+    );
   }
 
   /**
@@ -143,6 +148,14 @@ export default class App {
     });
   }
 
+  disputeManagerError() {
+    this.disputeManagerWrapper
+      .getMarketResult(
+        "0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596"
+      )
+      .then(result => console.log(result));
+  }
+
   signPayloadBitski() {
     const bitskiSigner = this.bitskiEthersWeb3Provider.getSigner();
     bitskiSigner.getAddress().then(address => {
@@ -171,15 +184,15 @@ export default class App {
       const hash = utils.arrayify(utils.formatBytes32String("hello"));
       console.log(`Bitski hash to sign: ${hash}`);
       bitskiSigner.provider
-      .send("eth_sign", [address.toLowerCase(), hash])
-      .then(signature => {
-        console.log(`Bitski signature: ${signature}`);
-        this.myContractEthersWrapper
-          .computeRecoveryAddress(hash, signature)
-          .then(address => {
-            console.log(`Recovered bitski address: ${address}`);
-          });
-      });
+        .send("eth_sign", [address.toLowerCase(), hash])
+        .then(signature => {
+          console.log(`Bitski signature: ${signature}`);
+          this.myContractEthersWrapper
+            .computeRecoveryAddress(hash, signature)
+            .then(address => {
+              console.log(`Recovered bitski address: ${address}`);
+            });
+        });
     });
   }
 
@@ -259,11 +272,24 @@ export default class App {
         this.contractInstance = instance;
         this.myContractEthersWrapper = new ethersContract(
           instance.options.address,
-          artifacts.abi,
+          myContractArtifacts.abi,
           this.bitskiEthersWeb3Provider
         );
         // Show the app UI
         this.showApp();
+      })
+      .catch(error => {
+        this.setError(error);
+      });
+    this.disputeManagerContract
+      .deployed()
+      .then(instance => {
+        this.disputeManagerInstance = instance;
+        this.disputeManagerWrapper = new ethersContract(
+          instnace.options.address,
+          disputeManagerArtifact.abi,
+          this.bitskiEthersWeb3Provider
+        );
       })
       .catch(error => {
         this.setError(error);

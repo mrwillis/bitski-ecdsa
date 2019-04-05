@@ -161,7 +161,23 @@ export default class App {
   }
 
   disputeManagerError() {
-    this.myContractEthersWrapper.getEnum().then(result => console.log(result));
+
+    this.disputeManagerContract
+    .deployed()
+    .then(instance => {
+      this.contractInstance = instance;
+      this.disputeManagerWrapper = new ethersContract(
+        instance.options.address,
+        disputeManagerArtifact.abi,
+        this.bitskiEthersWeb3Provider
+      );
+      this.disputeManagerWrapper.getMarketResult("0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596").then(result => console.log(result))
+
+    })
+    .catch(error => {
+      this.setError(error);
+    });
+    // this.myContractEthersWrapper.getEnum().then(result => console.log(result));
     // this.disputeManagerWrapper
     //   .getMarketResult(
     //     "0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596"

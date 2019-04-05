@@ -55,7 +55,7 @@ contract MyContract {
 
     function getEnum()
         public
-        pure
+        view
         returns (TestStruct memory)
     {
         return TestStruct({

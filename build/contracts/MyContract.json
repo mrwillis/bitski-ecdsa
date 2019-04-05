@@ -5,7 +5,8 @@
       "inputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
-      "type": "constructor"
+      "type": "constructor",
+      "signature": "constructor"
     },
     {
       "constant": true,
@@ -28,7 +29,8 @@
       ],
       "payable": false,
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "signature": "0xfe817446"
     },
     {
       "constant": true,
@@ -97,7 +99,8 @@
       ],
       "payable": false,
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "signature": "0xe8844276"
     },
     {
       "constant": true,
@@ -162,7 +165,8 @@
       ],
       "payable": false,
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "signature": "0x37824f67"
     },
     {
       "constant": true,
@@ -190,7 +194,8 @@
       ],
       "payable": false,
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "signature": "0xf0ebce5a"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.5.7+commit.6da8b019\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"components\":[{\"name\":\"marketHash\",\"type\":\"bytes32\"},{\"name\":\"totalBetSize\",\"type\":\"uint256\"},{\"name\":\"percentageOdds\",\"type\":\"uint256\"},{\"name\":\"expiry\",\"type\":\"uint256\"},{\"name\":\"oracleFee\",\"type\":\"uint256\"},{\"name\":\"relayerMakerFee\",\"type\":\"uint256\"},{\"name\":\"relayerTakerFee\",\"type\":\"uint256\"},{\"name\":\"salt\",\"type\":\"uint256\"},{\"name\":\"maker\",\"type\":\"address\"},{\"name\":\"relayer\",\"type\":\"address\"},{\"name\":\"isMakerBettingOutcomeOne\",\"type\":\"bool\"}],\"name\":\"makerOrder\",\"type\":\"tuple\"}],\"name\":\"getHash\",\"outputs\":[{\"name\":\"\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"components\":[{\"name\":\"marketHash\",\"type\":\"bytes32\"},{\"name\":\"totalBetSize\",\"type\":\"uint256\"},{\"name\":\"percentageOdds\",\"type\":\"uint256\"},{\"name\":\"expiry\",\"type\":\"uint256\"},{\"name\":\"oracleFee\",\"type\":\"uint256\"},{\"name\":\"relayerMakerFee\",\"type\":\"uint256\"},{\"name\":\"relayerTakerFee\",\"type\":\"uint256\"},{\"name\":\"salt\",\"type\":\"uint256\"},{\"name\":\"maker\",\"type\":\"address\"},{\"name\":\"relayer\",\"type\":\"address\"},{\"name\":\"isMakerBettingOutcomeOne\",\"type\":\"bool\"}],\"name\":\"makerOrder\",\"type\":\"tuple\"},{\"name\":\"makerSig\",\"type\":\"bytes\"}],\"name\":\"getBaseOrderStatus\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getEnum\",\"outputs\":[{\"components\":[{\"name\":\"outcome\",\"type\":\"uint8\"},{\"name\":\"voteOption\",\"type\":\"uint8\"},{\"name\":\"hello\",\"type\":\"uint256\"}],\"name\":\"\",\"type\":\"tuple\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"hashed\",\"type\":\"bytes32\"},{\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"computeRecoveryAddress\",\"outputs\":[{\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{\"getBaseOrderStatus((bytes32,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address,address,bool),bytes)\":{\"params\":{\"makerOrder\":\"A maker order.\",\"makerSig\":\"The signature of the maker on this order.\"},\"return\":\"A string representing the status. \\\"OK\\\" for valid.\"}}},\"userdoc\":{\"methods\":{\"getBaseOrderStatus((bytes32,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address,address,bool),bytes)\":{\"notice\":\"Gets the \\\"base\\\" status of an order without considering any token          allowances and balances.\"}}}},\"settings\":{\"compilationTarget\":{\"/home/julian/betx/bitski-ecdsa/contracts/MyContract.sol\":\"MyContract\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/julian/betx/bitski-ecdsa/contracts/LibOrder.sol\":{\"keccak256\":\"0x9006f093dee8adfb4e578240334afdac57f4c501ceeb0238cf7e05fd7f1008a6\",\"urls\":[\"bzzr://245e39c4bc15619f9076e31d5b4876e22156541350362866bb1fd16d722c627b\"]},\"/home/julian/betx/bitski-ecdsa/contracts/MyContract.sol\":{\"keccak256\":\"0x310e0d90a6bd4b731e466c77910d451a04d85d0965c4f257b0e57ea3a7f4530f\",\"urls\":[\"bzzr://aebca19937fbe0b764438971a0c402ed5bd0fc0776a9692fb448812caba86bd2\"]},\"openzeppelin-solidity/contracts/cryptography/ECDSA.sol\":{\"keccak256\":\"0xb48974d92a87053dc1d6c5389f3d1b2ad522dec23afcb508eaa935d98dfdc0b6\",\"urls\":[\"bzzr://e665a84309432c27a26e622665dd97ff29d4d6ad7ad655d6e2c50226a5e99b56\"]},\"openzeppelin-solidity/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x965012d27b4262d7a41f5028cbb30c51ebd9ecd4be8fb30380aaa7a3c64fbc8b\",\"urls\":[\"bzzr://41ca38f6b0fa4b77b0feec43e422cfbec48b7eb38a41edf0b85c77e8d9a296b1\"]}},\"version\":1}",
@@ -2906,8 +2911,8 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0x255380a094adeF9E2DD2ae57f413C5b07086A334",
-      "transactionHash": "0xddb08c2fc808085df200263e774fbf0af55e7877a414a41bb8012f8995db6753"
+      "address": "0x595a181bA690d6F2A668C17C56270eE42BEed4dc",
+      "transactionHash": "0x47fe209d8e4935dc988e33cfd9908fb44e397bc97ccad5679cc74aa398fc6ddc"
     },
     "1554140725987": {
       "events": {},
@@ -2941,7 +2946,7 @@
     }
   },
   "schemaVersion": "3.0.6",
-  "updatedAt": "2019-04-05T18:10:14.190Z",
+  "updatedAt": "2019-04-05T18:16:10.554Z",
   "devdoc": {
     "methods": {
       "getBaseOrderStatus((bytes32,uint256,uint256,uint256,uint256,uint256,uint256,uint256,address,address,bool),bytes)": {

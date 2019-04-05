@@ -39,12 +39,12 @@ export default class App {
     this.bitskiEthersWeb3Provider = new providers.Web3Provider(
       this.web3.currentProvider
     );
-    this.bitskiEthersWeb3Provider.on('debug', (info) => {
+    this.bitskiEthersWeb3Provider.on("debug", info => {
       console.log(info.action);
       console.log(info.request);
       console.log(info.response);
       console.log(info.provider);
-    })
+    });
     // Initialize the sample contract
     this.contract = new Contract(this.web3, myContractArtifacts);
     this.disputeManagerContract = new Contract(
@@ -96,7 +96,7 @@ export default class App {
     });
     this.disputeManagerErrorElement.addEventListener("click", event => {
       event.preventDefault();
-      this.disputeManagerError()
+      this.disputeManagerError();
     });
     this.signPayloadBitskiElement.addEventListener("click", event => {
       event.preventDefault();
@@ -288,15 +288,7 @@ export default class App {
           myContractArtifacts.abi,
           this.bitskiEthersWeb3Provider
         );
-        this.disputeManagerContract.deployed().then(instance => {
-          this.disputeManagerInstance = instance;
-          this.disputeManagerWrapper = new ethersContract(
-            instnace.options.address,
-            disputeManagerArtifact.abi,
-            this.bitskiEthersWeb3Provider
-          );
-          this.showApp()
-        })
+        this.showApp();
       })
       .catch(error => {
         this.setError(error);

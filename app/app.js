@@ -81,11 +81,17 @@ export default class App {
     this.signHelloMetamaskElement = document.getElementById(
       "sign-hello-metamask"
     );
+    this.disputeMmanagerError = document.getElementById(
+      "dispute-manager-error"
+    );
     this.signPayloadMetamaskElement.addEventListener("click", event => {
       event.preventDefault();
       this.signPayloadMetamask();
     });
-
+    this.disputeManagerErrorElement.addEventListener("click", event => {
+      event.preventDefault();
+      this.disputeManagerError()
+    });
     this.signPayloadBitskiElement.addEventListener("click", event => {
       event.preventDefault();
       this.signPayloadBitski();

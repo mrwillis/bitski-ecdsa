@@ -281,21 +281,15 @@ export default class App {
           myContractArtifacts.abi,
           this.bitskiEthersWeb3Provider
         );
-        // Show the app UI
-        this.showApp();
-      })
-      .catch(error => {
-        this.setError(error);
-      });
-    this.disputeManagerContract
-      .deployed()
-      .then(instance => {
-        this.disputeManagerInstance = instance;
-        this.disputeManagerWrapper = new ethersContract(
-          instnace.options.address,
-          disputeManagerArtifact.abi,
-          this.bitskiEthersWeb3Provider
-        );
+        this.disputeManagerContract.deployed().then(instance => {
+          this.disputeManagerInstance = instance;
+          this.disputeManagerWrapper = new ethersContract(
+            instnace.options.address,
+            disputeManagerArtifact.abi,
+            this.bitskiEthersWeb3Provider
+          );
+          this.showApp()
+        })
       })
       .catch(error => {
         this.setError(error);

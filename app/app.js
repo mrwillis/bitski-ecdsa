@@ -90,6 +90,12 @@ export default class App {
     this.disputeManagerErrorElement = document.getElementById(
       "dispute-manager-error"
     );
+    this.metamaskDisputeManagerErrorElement = document
+      .getElementById("metamask-dispute-manager-error")
+      .addEventListener("click", event => {
+        event.preventDefault();
+        this.metamaskDisputeManager();
+      });
     this.signPayloadMetamaskElement.addEventListener("click", event => {
       event.preventDefault();
       this.signPayloadMetamask();
@@ -161,28 +167,42 @@ export default class App {
   }
 
   disputeManagerError() {
-
     this.disputeManagerContract
-    .deployed()
-    .then(instance => {
-      this.contractInstance = instance;
-      this.disputeManagerWrapper = new ethersContract(
-        instance.options.address,
-        disputeManagerArtifact.abi,
-        this.bitskiEthersWeb3Provider
-      );
-      this.disputeManagerWrapper.getMarketResult("0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596").then(result => console.log(result))
+      .deployed()
+      .then(instance => {
+        this.contractInstance = instance;
+        this.disputeManagerWrapper = new ethersContract(
+          instance.options.address,
+          disputeManagerArtifact.abi,
+          this.bitskiEthersWeb3Provider
+        );
+        this.disputeManagerWrapper
+          .getMarketResult(
+            "0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596"
+          )
+          .then(result => console.log(result));
+      })
+      .catch(error => {
+        this.setError(error);
+      });
+  }
 
-    })
-    .catch(error => {
-      this.setError(error);
+  metamaskDisputeManager() {
+    window.ethereum.enable().then(() => {
+      const provider = new providers.Web3Provider(window.web3.currentProvider);
+      this.disputeManagerContract.deployed().then(instance => {
+        const wrapper = new ethersContract(
+          instance.options.address,
+          disputeManagerArtifact.abi,
+          provider
+        );
+        wrapper
+          .getMarketResult(
+            "0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596"
+          )
+          .then(result => console.log(result));
+      });
     });
-    // this.myContractEthersWrapper.getEnum().then(result => console.log(result));
-    // this.disputeManagerWrapper
-    //   .getMarketResult(
-    //     "0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596"
-    //   )
-    //   .then(result => console.log(result));
   }
 
   signPayloadBitski() {

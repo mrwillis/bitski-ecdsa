@@ -81,7 +81,7 @@ export default class App {
     this.signHelloMetamaskElement = document.getElementById(
       "sign-hello-metamask"
     );
-    this.disputeMmanagerErrorElement = document.getElementById(
+    this.disputeManagerErrorElement = document.getElementById(
       "dispute-manager-error"
     );
     this.signPayloadMetamaskElement.addEventListener("click", event => {

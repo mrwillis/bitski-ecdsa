@@ -155,11 +155,12 @@ export default class App {
   }
 
   disputeManagerError() {
-    this.disputeManagerWrapper
-      .getMarketResult(
-        "0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596"
-      )
-      .then(result => console.log(result));
+    this.myContractEthersWrapper.getEnum().then(result => console.log(result));
+    // this.disputeManagerWrapper
+    //   .getMarketResult(
+    //     "0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596"
+    //   )
+    //   .then(result => console.log(result));
   }
 
   signPayloadBitski() {

@@ -12,6 +12,15 @@ contract MyContract {
 
     }
 
+    enum Outcome {VOID, OUTCOME_ONE, OUTCOME_TWO}
+    enum VoteOption {MISSED, OUTCOME_ONE, OUTCOME_TWO, VOID}
+
+    struct TestStruct {
+        Outcome outcome;
+        VoteOption voteOption;
+        uint256 hello;
+    }
+
     function computeRecoveryAddress(bytes32 hashed, bytes memory signature) public pure returns (address) {
         return ECDSA.recover(ECDSA.toEthSignedMessageHash(hashed), signature);
     }
@@ -42,6 +51,18 @@ contract MyContract {
         returns (bytes32)
     {
         return makerOrder.getOrderHash();
+    }
+
+    function getEnum()
+        public
+        pure
+        returns (TestStruct memory)
+    {
+        return TestStruct({
+            outcome: Outcome.OUTCOME_ONE,
+            voteOption: VoteOption.OUTCOME_TWO,
+            hello: 0
+        });
     }
 
 }

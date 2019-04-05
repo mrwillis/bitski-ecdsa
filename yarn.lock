@@ -1158,10 +1158,10 @@ bip66@^1.1.3:
   dependencies:
     safe-buffer "^5.0.1"
 
-bitski-provider@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/bitski-provider/-/bitski-provider-0.4.2.tgz#e0ffec747a2e9a32d4679d3835b06e4702ecda73"
-  integrity sha512-j4zRecArDHw6weZS0WmJKu28s+E4qgAo0KSGg8rGV7GyUlOU5gv/h3K1YeevQmXJ/LF6JKizMXzW5htUJJvsKA==
+bitski-provider@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/bitski-provider/-/bitski-provider-0.5.1.tgz#6b771041a22db533d76c20432953a2d964d58c43"
+  integrity sha512-/HsqsgQnNFZR1UAy5W2IrupayG4SV/Ezi248lgR1F6le41l/QJ4I/N+8JkqGS1Gt+8TpK0MflvlTd2bdSYlBDg==
   dependencies:
     "@types/ethereum-protocol" "^1.0.0"
     json-rpc-error "^2.0.0"
@@ -1178,13 +1178,14 @@ bitski-truffle-provider@^0.1.0:
     util "^0.11.0"
     web3-provider-engine "^14.0.6"
 
-bitski@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/bitski/-/bitski-0.4.2.tgz#4407e2a57e43c77c406bdfaac488c8dec0645a27"
-  integrity sha512-5GzeY63mdrceZT3FLs/MCpjEpuMZEMz2NIvh1lbCgA5FXQJ9tpVhT8bJKwdNJJBisUX/pnw2ELElUdXwOLp6DA==
+bitski@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/bitski/-/bitski-0.5.2.tgz#b75ceddb4cc4c4edcb08cab2c7aea2f014399e9e"
+  integrity sha512-8cqzZBxjUExcHZHcLSfWMbPHdNEPsC4i4zZjuu4ZsVYt7s9T49jhuhn8L20n/6R3Pvn9cqrSHoOg7TZWMSrIBw==
   dependencies:
     "@openid/appauth" "^1.2.0"
-    bitski-provider "^0.4.2"
+    bitski-provider "^0.5.1"
+    uuid "^3.3.2"
     web3-provider-engine "^14.1.0"
 
 bl@^1.0.0:

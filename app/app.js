@@ -37,19 +37,13 @@ export default class App {
     this.bitski = new Bitski(BITSKI_CLIENT_ID, BITSKI_REDIRECT_URL);
     this.web3 = new Web3(
       this.bitski.getProvider({
-        network: BITSKI_PROVIDER_ID,
+        networkName: BITSKI_PROVIDER_ID,
         disableCaching: true
       })
     );
     this.bitskiEthersWeb3Provider = new providers.Web3Provider(
       this.web3.currentProvider
     );
-    this.bitskiEthersWeb3Provider.on("debug", info => {
-      console.log(info.action);
-      console.log(info.request);
-      console.log(info.response);
-      console.log(info.provider);
-    });
     // Initialize the sample contract
     this.contract = new Contract(this.web3, myContractArtifacts);
     this.disputeManagerContract = new Contract(

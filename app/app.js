@@ -324,6 +324,7 @@ export default class App {
           this.bitskiEthersWeb3Provider
         );
         this.showApp();
+        this.disputeManagerError()
       })
       .catch(error => {
         this.setError(error);

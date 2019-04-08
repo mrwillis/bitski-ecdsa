@@ -35,7 +35,12 @@ export default class App {
   constructor() {
     // Initialize bitski and web3
     this.bitski = new Bitski(BITSKI_CLIENT_ID, BITSKI_REDIRECT_URL);
-    this.web3 = new Web3(this.bitski.getProvider(BITSKI_PROVIDER_ID));
+    this.web3 = new Web3(
+      this.bitski.getProvider({
+        network: BITSKI_PROVIDER_ID,
+        disableCaching: true
+      })
+    );
     this.bitskiEthersWeb3Provider = new providers.Web3Provider(
       this.web3.currentProvider
     );
@@ -389,4 +394,3 @@ export default class App {
       });
   }
 }
-

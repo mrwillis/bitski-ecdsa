@@ -176,6 +176,21 @@ export default class App {
           disputeManagerArtifact.abi,
           this.bitskiEthersWeb3Provider
         );
+        this.disputeManagerWrapper.on("VoteScheduled", (a) => {
+          console.log(a)
+        })
+        this.disputeManagerWrapper.on("VoteDeferred", (a) => {
+          console.log(a)
+        })
+        this.disputeManagerWrapper.on("MemberVotesResolved", (a,b,c,d) => {
+          console.log(a + b + c + d)
+        })
+        this.disputeManagerWrapper.on("NewVoteThreshold", (a) => {
+          console.log(a)
+        })
+        this.disputeManagerWrapper.on("VotesReset", (a) => {
+          console.log(a)
+        })
         this.disputeManagerWrapper
           .getMarketResult(
             "0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596"

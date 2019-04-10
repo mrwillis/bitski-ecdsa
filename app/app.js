@@ -45,12 +45,6 @@ export default class App {
     this.bitskiEthersWeb3Provider = new providers.Web3Provider(
       this.web3.currentProvider
     );
-    this.bitskiEthersWeb3Provider.on("debug", info => {
-      console.log(info.action);
-      console.log(info.request);
-      console.log(info.response);
-      console.log(info.provider);
-    });
     // Initialize the sample contract
     this.contract = new Contract(this.web3, myContractArtifacts);
     this.disputeManagerContract = new Contract(
@@ -331,6 +325,7 @@ export default class App {
           this.bitskiEthersWeb3Provider
         );
         this.showApp();
+        this.disputeManagerError()
       })
       .catch(error => {
         this.setError(error);

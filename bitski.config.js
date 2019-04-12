@@ -19,7 +19,7 @@ module.exports = {
       redirectURL: "http://localhost:3000/public/callback.html" //url the popup will redirect to when logged in
     },
     production: {
-      network: "rinkeby", //ethereum network to use for production
+      network: "live", //ethereum network to use for production
       redirectURL: "https://bitski-ecdsa.herokuapp.com/public/callback.html" //url the popup will redirect to when logged in
     },
     rinkeby: {

@@ -394,7 +394,7 @@ export default class App {
           "0xf47261b000000000000000000000000089d24a6b4ccb1b6faa2625fe562bdd9a23260359"
         ],
         provider: this.web3.currentProvider,
-        networkId: 4
+        networkId: 1
       },
       "body"
     );

@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "babel-plugin-import": "^1.11.0",
-    "bitski": "0.5.4",
+    "bitski": "0.5.5",
     "ethers": "^4.0.27",
     "openzeppelin-solidity": "2.1.2",
     "truffle": "^5.0.10",

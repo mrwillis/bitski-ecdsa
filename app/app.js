@@ -33,8 +33,7 @@ export default class App {
     this.web3 = new Web3(
       this.bitski.getProvider({
         networkName: BITSKI_PROVIDER_ID,
-        pollingInterval: 10000,
-        disableCaching: true
+        pollingInterval: 10000
       })
     );
     this.bitskiEthersWeb3Provider = new providers.Web3Provider(

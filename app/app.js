@@ -371,7 +371,7 @@ export default class App {
         } else {
           console.log("no address found");
         }
-        this.render0xInstant()
+        this.render0xInstant();
       })
       .catch(error => {
         this.setError(error);
@@ -393,7 +393,8 @@ export default class App {
         availableAssetDatas: [
           "0xf47261b000000000000000000000000089d24a6b4ccb1b6faa2625fe562bdd9a23260359"
         ],
-        provider: this.web3.currentProvider
+        provider: this.web3.currentProvider,
+        networkId: 4
       },
       "body"
     );

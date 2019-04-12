@@ -1,14 +1,9 @@
-// Simple example app that demonstrates sign in, sign out, using web3,
-// and initializing contracts from truffle.
-
 import { AuthenticationStatus, Bitski } from "bitski";
 import { Contract as ethersContract, providers, utils } from "ethers";
 import { Zero } from "ethers/constants";
 import { bigNumberify, randomBytes } from "ethers/utils";
 import Web3 from "web3";
 import disputeManagerArtifact from "../build/contracts/DisputeManager.json";
-// Import any contracts you want to use from the build folder.
-// Here we've imported the sample contract.
 import myContractArtifacts from "../build/contracts/MyContract.json";
 import Contract from "./contract";
 import { getHash } from "./hash";
@@ -176,21 +171,21 @@ export default class App {
           disputeManagerArtifact.abi,
           this.bitskiEthersWeb3Provider
         );
-        this.disputeManagerWrapper.on("VoteScheduled", (a) => {
-          console.log(a)
-        })
-        this.disputeManagerWrapper.on("VoteDeferred", (a) => {
-          console.log(a)
-        })
-        this.disputeManagerWrapper.on("MemberVotesResolved", (a,b,c,d) => {
-          console.log(a + b + c + d)
-        })
-        this.disputeManagerWrapper.on("NewVoteThreshold", (a) => {
-          console.log(a)
-        })
-        this.disputeManagerWrapper.on("VotesReset", (a) => {
-          console.log(a)
-        })
+        this.disputeManagerWrapper.on("VoteScheduled", a => {
+          console.log(a);
+        });
+        this.disputeManagerWrapper.on("VoteDeferred", a => {
+          console.log(a);
+        });
+        this.disputeManagerWrapper.on("MemberVotesResolved", (a, b, c, d) => {
+          console.log(a + b + c + d);
+        });
+        this.disputeManagerWrapper.on("NewVoteThreshold", a => {
+          console.log(a);
+        });
+        this.disputeManagerWrapper.on("VotesReset", a => {
+          console.log(a);
+        });
         this.disputeManagerWrapper
           .getMarketResult(
             "0xf845bde8cc4101ea1456985e2fb87a4fe10d351f3c5aa53e5863396d6253f596"
@@ -340,7 +335,7 @@ export default class App {
           this.bitskiEthersWeb3Provider
         );
         this.showApp();
-        this.disputeManagerError()
+        this.disputeManagerError();
       })
       .catch(error => {
         this.setError(error);
@@ -376,6 +371,7 @@ export default class App {
         } else {
           console.log("no address found");
         }
+        this.render0xInstant()
       })
       .catch(error => {
         this.setError(error);
@@ -388,6 +384,19 @@ export default class App {
   showLoginButton() {
     this.signedOutContainer.style.display = "block";
     this.signedInContainer.style.display = "none";
+  }
+
+  render0xInstant() {
+    zeroExInstant.render(
+      {
+        orderSource: "https://api.radarrelay.com/0x/v2/",
+        availableAssetDatas: [
+          "0xf47261b000000000000000000000000089d24a6b4ccb1b6faa2625fe562bdd9a23260359"
+        ],
+        provider: this.web3.currentProvider
+      },
+      "body"
+    );
   }
 
   /**

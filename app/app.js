@@ -325,21 +325,21 @@ export default class App {
    */
   continueToApp() {
     //Set up the contract
-    this.contract
-      .deployed()
-      .then(instance => {
-        this.contractInstance = instance;
-        this.myContractEthersWrapper = new ethersContract(
-          instance.options.address,
-          myContractArtifacts.abi,
-          this.bitskiEthersWeb3Provider
-        );
+    // this.contract
+    //   .deployed()
+    //   .then(instance => {
+    //     this.contractInstance = instance;
+    //     this.myContractEthersWrapper = new ethersContract(
+    //       instance.options.address,
+    //       myContractArtifacts.abi,
+    //       this.bitskiEthersWeb3Provider
+    //     );
         this.showApp();
-        this.disputeManagerError();
-      })
-      .catch(error => {
-        this.setError(error);
-      });
+      //   this.disputeManagerError();
+      // })
+      // .catch(error => {
+      //   this.setError(error);
+      // });
   }
 
   /**

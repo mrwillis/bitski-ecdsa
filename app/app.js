@@ -318,12 +318,12 @@ export default class App {
     //       myContractArtifacts.abi,
     //       this.bitskiEthersWeb3Provider
     //     );
-        this.showApp();
-      //   this.disputeManagerError();
-      // })
-      // .catch(error => {
-      //   this.setError(error);
-      // });
+    this.showApp();
+    //   this.disputeManagerError();
+    // })
+    // .catch(error => {
+    //   this.setError(error);
+    // });
   }
 
   /**
@@ -355,7 +355,6 @@ export default class App {
         } else {
           console.log("no address found");
         }
-        this.render0xInstant();
       })
       .catch(error => {
         this.setError(error);

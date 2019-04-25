@@ -30,7 +30,7 @@ module.exports = {
   networkIds: {
     kovan: "kovan",
     rinkeby: "rinkeby",
-    live: "mainnet",
+    live: "rinkeby",
     development: "http://localhost:8545" //Update this if you use Ganache or another local blockchain
   }
 };
